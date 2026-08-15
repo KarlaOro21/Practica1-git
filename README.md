@@ -113,9 +113,40 @@ public class Practica1 {
             //Columna derecha arriba para abajo 
             for (int i=1; i<tamTablero; i++){
                 periFilas[idx]=i; periColums[idx]=tamTablero-1; idx++;
+            }
+            
+            
+            //Fila inferior derecha a izquierda (no repite esquina)
+            for (int j=tamTablero-2; j>=0; j--){
+                periFilas[idx]=tamTablero-1; periColums[idx]=j; idx++;
+            }
+            
+            
+            //Columna izquierda abajo para arriba (no repite las 4 esquinas)
+            for (int i=tamTablero-2; i>=1; i--){
+                periFilas[idx]=i; periColums[idx]=0; idx++;
+            }
+            
         }
         
         
+        //Elige al azar entrada y salida via exterior sin esquinas y diferentes entre si
+        static void GenerarEntradaSalida(){
+            Random rnd=new Random();
+            int fila, colum;
+            
+            do {
+                fila=rnd.nextInt(tamTablero);
+                colum=rnd.nextInt(tamTablero);
+            } while (!esBordeSinEsquina(fila, colum));
+            EntradaFila=fila;
+            EntradaColum=colum;
+            tablero[EntradaFila][EntradaColum]='E';
+            
+            do {
+                fila=rnd.nextInt(tamTablero);
+                colum=rnd.nextInt(tamTablero);
+            }
     }
 }
 
